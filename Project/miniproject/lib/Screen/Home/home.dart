@@ -150,7 +150,7 @@ class _HomePageState extends State<HomePage> {
   void getNews() async {
     News newsarticle = News();
     await newsarticle.getNews();
-    newsarticle.news.forEach((element) {
+    for (var element in newsarticle.news) {
       if (element.urlToImage != null && element.description != null) {
         NewsModel newsModel = NewsModel(
           title: element.title,
@@ -167,7 +167,7 @@ class _HomePageState extends State<HomePage> {
           });
         }
       }
-    });
+    }
 
     if (mounted) {
       setState(() {
