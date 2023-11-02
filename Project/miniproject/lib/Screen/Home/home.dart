@@ -89,14 +89,14 @@ class _HomePageState extends State<HomePage> {
               onPressed: () async {
                 UserManager userManager = UserManager();
                 await userManager.hapusEmail();
-
                 setState(() {
                   isLoggedIn = false;
                 });
                 final prefs = await SharedPreferences.getInstance();
                 await prefs.setBool('isLoggedIn', false);
-                if (!context.mounted)
-                  return; // code nya menghindari error do not use BuildContext across async gaps.
+                if (!context.mounted) {
+                  return;
+                }
                 Navigator.of(context).pop();
                 showRegistrationAlert(context);
               },
@@ -182,7 +182,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         centerTitle: true,
         title: Container(
-          width: 100,
+          width: 130,
           height: 40,
           child: Image.asset(
             'assets/images/logo.png',

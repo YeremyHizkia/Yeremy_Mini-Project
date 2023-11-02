@@ -4,6 +4,8 @@ import 'package:miniproject/Screen/Login/utils/login_setting.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
+
   @override
   _SignUpScreenState createState() => _SignUpScreenState();
 }
@@ -24,10 +26,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
       final prefs = await SharedPreferences.getInstance();
       await prefs.setBool('isLoggedIn', true);
-
+      if (!context.mounted) {
+        return;
+      }
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => LoginScreen(),
+          builder: (context) => const LoginScreen(),
         ),
       );
     } else {
@@ -54,6 +58,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           'Daftar Akun',
           style: TextStyle(
             fontWeight: FontWeight.w700,
+            color: Colors.white,
           ),
         ),
       ),
@@ -62,11 +67,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            TweenAnimationBuilder<double>(
+              tween: Tween(begin: 0, end: 1),
+              duration: const Duration(seconds: 2),
+              builder: (context, value, child) {
+                return Opacity(
+                  opacity: value,
+                  child: child,
+                );
+              },
+              child: Image.asset('assets/images/logo.png',
+                  width: 300, height: 150),
+            ),
             TextField(
               controller: _emailController,
               decoration: InputDecoration(
                 labelText: 'Alamat Email',
-                icon: Icon(Icons.email),
+                icon: const Icon(Icons.email),
                 errorText: !_isEmailValid ? 'Email tidak boleh kosong' : null,
               ),
             ),
@@ -78,12 +95,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               obscureText: true,
             ),
-            SizedBox(height: 32),
+            const SizedBox(height: 32),
             ElevatedButton(
               onPressed: () {
                 _register(context);
               },
-              child: Text('Daftar'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green,
+              ),
+              child: const Text(
+                'Daftar',
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           ],
         ),

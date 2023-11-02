@@ -58,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
         title: const Text(
-          'Login',
+          'Selamat Datang',
           style: TextStyle(
             fontWeight: FontWeight.w700,
           ),
@@ -70,6 +70,18 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              TweenAnimationBuilder<double>(
+                tween: Tween(begin: 0, end: 1),
+                duration: const Duration(seconds: 2),
+                builder: (context, value, child) {
+                  return Opacity(
+                    opacity: value,
+                    child: child,
+                  );
+                },
+                child: Image.asset('assets/images/logo.png',
+                    width: 300, height: 150),
+              ),
               TextField(
                 controller: _emailController,
                 decoration: const InputDecoration(
@@ -90,7 +102,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 onPressed: () {
                   _login(context);
                 },
-                child: const Text('Login'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green,
+                ),
+                child: const Text(
+                  'Login',
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
             ],
           ),

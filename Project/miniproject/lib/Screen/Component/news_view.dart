@@ -35,7 +35,6 @@ class _NewsViewState extends State<NewsView> {
 
   Future<void> toggleBookmark() async {
     final bookmarkNews = BookmarkNews();
-    print('berfungsi nih');
     final newsModel = NewsModel(
       id: widget.news.id,
       title: widget.news.title,
@@ -44,7 +43,6 @@ class _NewsViewState extends State<NewsView> {
 
     if (isBookmark) {
       await bookmarkNews.deleteNews(newsModel.id!);
-      print('Terhapus nih');
     } else {
       await bookmarkNews.insertNews(newsModel);
     }
@@ -69,7 +67,7 @@ class _NewsViewState extends State<NewsView> {
           appBar: AppBar(
             centerTitle: true,
             title: Container(
-              width: 100,
+              width: 130,
               height: 40,
               child: Image.asset(
                 'assets/images/logo.png',
