@@ -68,26 +68,12 @@ class _NewsViewState extends State<NewsView> {
         child: Scaffold(
           appBar: AppBar(
             centerTitle: true,
-            title: RichText(
-              text: const TextSpan(
-                children: [
-                  TextSpan(
-                    text: "E-",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 23,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  TextSpan(
-                    text: "News",
-                    style: TextStyle(
-                      color: Colors.green,
-                      fontSize: 23,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
+            title: Container(
+              width: 100,
+              height: 40,
+              child: Image.asset(
+                'assets/images/logo.png',
+                fit: BoxFit.contain,
               ),
             ),
             actions: [
